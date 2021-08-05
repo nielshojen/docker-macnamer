@@ -1,7 +1,6 @@
 # Macnamer Dockerfile
 # Version 0.1
-#FROM phusion/passenger-customizable:0.9.11
-FROM phusion/passenger-full:latest
+FROM phusion/passenger-customizable:0.9.11
 
 ENV HOME /root
 #ENV DEBIAN_FRONTEND noninteractive
@@ -14,6 +13,7 @@ ENV DOCKER_MACNAMER_LANG en_GB
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
 RUN apt-get -y update
+RUN ls -l /build/
 RUN /build/utilities.sh
 RUN /build/python.sh
 
