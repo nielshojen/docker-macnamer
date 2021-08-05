@@ -1,12 +1,12 @@
 # Macnamer Dockerfile
 # Version 0.1
-FROM phusion/passenger-customizable:0.9.11
+FROM phusion/passenger-customizable:1.0.19
 
 ENV HOME /root
 #ENV DEBIAN_FRONTEND noninteractive
 ENV APP_DIR /home/app/macnamer
-ENV TZ Europe/London
-ENV DOCKER_MACNAMER_TZ Europe/London
+ENV TZ Europe/Copenhagen
+ENV DOCKER_MACNAMER_TZ Europe/Copenhagen
 ENV DOCKER_MACNAMER_ADMINS Docker User, docker@localhost
 ENV DOCKER_MACNAMER_LANG en_GB
 
