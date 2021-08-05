@@ -1,9 +1,8 @@
 # Macnamer Dockerfile
 # Version 0.1
-FROM phusion/passenger-customizable:0.9.11
+FROM phusion/passenger-customizable:0.9.35
 
 ENV HOME /root
-#ENV DEBIAN_FRONTEND noninteractive
 ENV APP_DIR /home/app/macnamer
 ENV TZ Europe/Copenhagen
 ENV DOCKER_MACNAMER_TZ Europe/Copenhagen
@@ -12,20 +11,18 @@ ENV DOCKER_MACNAMER_LANG en_GB
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
-RUN apt-get -y update
-RUN ls -l /build/
-RUN /build/utilities.sh
-RUN /build/python.sh
+RUN apt-get update
+RUN /pd_build/utilities.sh
+RUN /pd_build/python.sh
 
 RUN apt-get -y install \
     python-setuptools \
     libpq-dev \
     python-dev \
-    && easy_install pip
+    python-pip
 
 RUN git clone https://github.com/grahamgilbert/macnamer.git $APP_DIR
 RUN pip install -r $APP_DIR/setup/requirements.txt
-# RUN pip install psycopg2==2.5.3
 RUN mkdir -p /etc/my_init.d
 ADD nginx/nginx-env.conf /etc/nginx/main.d/
 ADD nginx/macnamer.conf /etc/nginx/sites-enabled/macnamer.conf
