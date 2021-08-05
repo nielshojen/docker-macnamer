@@ -2,6 +2,7 @@
 # Version 0.1
 FROM phusion/passenger-customizable:0.9.35
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 ENV APP_DIR /home/app/macnamer
 ENV TZ Europe/Copenhagen
@@ -37,6 +38,6 @@ RUN rm -f /etc/nginx/sites-enabled/default
 
 EXPOSE 8000
 
-VOLUME ["/home/app/macnamer/macnamer/settings.py", "/home/app/macnamer/db"]
+VOLUME ["/home/app/macnamer/db"]
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
