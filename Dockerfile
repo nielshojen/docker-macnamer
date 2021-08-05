@@ -2,8 +2,6 @@
 # Version 0.1
 FROM phusion/passenger-customizable:0.9.11
 
-MAINTAINER Graham Gilbert <graham@grahamgilbert.com>
-
 ENV HOME /root
 #ENV DEBIAN_FRONTEND noninteractive
 ENV APP_DIR /home/app/macnamer
