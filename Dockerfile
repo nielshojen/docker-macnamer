@@ -41,6 +41,6 @@ RUN rm -f /etc/nginx/sites-enabled/default
 
 EXPOSE 8000
 
-VOLUME ["$APP_DIR/macnamer/settings.py", "$APP_DIR/db"]
+VOLUME ["/home/app/macnamer/macnamer/settings.py", "/home/app/macnamer/db"]
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
