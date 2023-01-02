@@ -5,11 +5,19 @@ This Docker image runs [Macnamer](https://github.com/grahamgilbert/macnamer).
 
 # Settings
 
-Several options, such as the timezone and admin password are customizable using environment variables.
+Several options, such as the timezone and admin password are customizable using environment variables:
 
 * ``ADMIN_PASS``: The default admin's password. This is only set if there are no other superusers, so if you choose your own admin username and password later on, this won't be created.
 * ``DOCKER_MACNAMER_TZ``: The desired [timezone](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to ``Europe/London``.
 * ``DOCKER_MACNAMER_ADMINS``: The admin user's details. Defaults to ``Docker User, docker@localhost``.
+
+Using a postgres database will also require:
+
+* ``DB_HOST``: The hostname for your postgresql server. Defaults to ``db``.
+* ``DB_PORT``: Port the postgres server runs on. Defaults to ``5432``.
+* ``DB_NAME``: Name of the database. Required.
+* ``DB_USER``: Username for the database. Required. 
+* ``DB_PASS``: Password for the database. Required.
 
 If you require more advanced settings, for example if you want to hide certain plugins from certain Business Units or if you have a plugin that needs settings, you can override ``settings.py`` with your own. A good starting place can be found on this image's [Github repository](https://github.com/grahamgilbert/macadmins-macnamer/blob/master/settings.py). To use your own ``settings.py`` file, use the ``-v`` option:
 

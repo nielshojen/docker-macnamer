@@ -1,6 +1,5 @@
 # Macnamer Dockerfile
-# Version 0.1
-FROM phusion/passenger-customizable:latest
+FROM phusion/passenger-customizable:0.9.35
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
