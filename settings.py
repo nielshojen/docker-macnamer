@@ -1,5 +1,3 @@
-# Django settings for Macnamer
-from settings_import import ADMINS, TIME_ZONE, LANGUAGE_CODE, ALLOWED_HOSTS
 import os
 # Django settings for macnamer project.
 
@@ -20,6 +18,35 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# PG Database
+host = None
+port = None
+
+if 'DB_USER' in os.environ:
+    if 'DB_HOST' in os.environ:
+        host = os.environ.get('DB_HOST')
+        port = os.environ.get('DB_PORT', '5432')
+
+    elif 'DB_PORT_5432_TCP_ADDR' in os.environ:
+        host = os.environ.get('DB_PORT_5432_TCP_ADDR')
+        port = os.environ.get('DB_PORT_5432_TCP_PORT', '5432')
+
+    else:
+        host = 'db'
+        port = '5432'
+
+if host and port:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASS'],
+            'HOST': host,
+            'PORT': port,
+        }
+    }
 
 SITE_ID = 1
 
