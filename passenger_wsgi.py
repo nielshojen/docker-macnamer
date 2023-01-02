@@ -4,7 +4,7 @@ import site
 MACNAMER_ENV_DIR = '/home/app/macnamer'
 
 # Use site to load the site-packages directory of our virtualenv
-site.addsitedir(os.path.join(MACNAMER_ENV_DIR, 'lib/python2.7/site-packages'))
+site.addsitedir(os.path.join(MACNAMER_ENV_DIR, 'lib/python3/site-packages'))
 
 # Make sure we have the virtualenv and the Django app itself added to our path
 sys.path.append(MACNAMER_ENV_DIR)

@@ -1,6 +1,6 @@
 # Macnamer Dockerfile
 # Version 0.1
-FROM phusion/passenger-customizable:0.9.35
+FROM phusion/passenger-customizable:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
@@ -20,9 +20,9 @@ RUN apt-get -y install \
     python-setuptools \
     libpq-dev \
     python-dev \
-    python-pip
+    python3-pip
 
-RUN git clone https://github.com/grahamgilbert/macnamer.git $APP_DIR
+RUN git clone --branch dev https://github.com/nielshojen/macnamer.git $APP_DIR
 RUN pip install -r $APP_DIR/setup/requirements.txt
 RUN mkdir -p /etc/my_init.d
 ADD nginx/nginx-env.conf /etc/nginx/main.d/
