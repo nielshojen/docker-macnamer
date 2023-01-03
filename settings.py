@@ -6,6 +6,9 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__fil
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+ADMINS = (
+)
+
 MANAGERS = ADMINS
 
 DATABASES = {
