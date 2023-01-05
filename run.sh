@@ -4,7 +4,7 @@ cd $APP_DIR
 ADMIN_PASS=${ADMIN_PASS:-}
 mkdir -p db
 chown -R app:app $APP_DIR
-#python3 manage.py syncdb --noinput
+python3 manage.py makemigrations --noinput
 python3 manage.py migrate --noinput
 python3 manage.py collectstatic --noinput
 

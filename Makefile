@@ -4,12 +4,13 @@ MACNAMER_PORT=8000
 DB_NAME=macnamer
 DB_PASS=password
 DB_USER=macnamer
-DB_CONTAINER_NAME:=postgres:9.6
+DB_CONTAINER_NAME:=postgres
+DB_CONTAINER_IMAGE:=postgres:12
 NAME:=macnamer
 PLUGIN_DIR=/tmp/plugins
-# DOCKER_RUN_COMMON=--name="$(NAME)" -p ${MACNAMER_PORT}:8000 --link $(DB_CONTAINER_NAME):db -e ADMIN_PASS=${ADMIN_PASS} -e DB_NAME=$(DB_NAME) -e DB_USER=$(DB_USER) -e DB_PASS=$(DB_PASS) -v ${PLUGIN_DIR}:/home/app/sal/plugins ${DOCKER_USER}/macnamer
+DOCKER_RUN_COMMON=--name="$(NAME)" -p ${MACNAMER_PORT}:8000 --link $(DB_CONTAINER_NAME):db -e ADMIN_PASS=${ADMIN_PASS} -e DB_NAME=$(DB_NAME) -e DB_USER=$(DB_USER) -e DB_PASS=$(DB_PASS) ${DOCKER_USER}/${NAME}
 
-DOCKER_RUN_COMMON=--name="$(NAME)" -p ${MACNAMER_PORT}:8000 -e ADMIN_PASS=${ADMIN_PASS} ${DOCKER_USER}/${NAME}
+#DOCKER_RUN_COMMON=--name="$(NAME)" -p ${MACNAMER_PORT}:8000 -e ADMIN_PASS=${ADMIN_PASS} ${DOCKER_USER}/${NAME}
 
 all: build
 
@@ -36,7 +37,8 @@ rmi:
 	docker rmi ${DOCKER_USER}/${NAME}
 
 postgres:
-	docker run --name="${DB_CONTAINER_NAME}" -d
+	docker pull ${DB_CONTAINER_IMAGE}
+	docker run -d --name="${DB_CONTAINER_NAME}" -e POSTGRES_DB=${DB_NAME} -e POSTGRES_USER=${DB_USER} -e POSTGRES_PASSWORD=${DB_PASS} ${DB_CONTAINER_IMAGE}
 
 postgres-clean:
 	docker stop $(DB_CONTAINER_NAME)
