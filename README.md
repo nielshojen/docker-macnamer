@@ -1,7 +1,7 @@
 macadmins-macnamer
 ==================
 
-This Docker image runs [Macnamer](https://github.com/grahamgilbert/macnamer).
+This Docker image runs [Macnamer](https://github.com/nielshojen/macnamer).
 
 # Settings
 

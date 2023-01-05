@@ -12,17 +12,19 @@ ENV DOCKER_MACNAMER_LANG en_GB
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
 RUN apt-get update
+RUN apt-get upgrade -y
 RUN /pd_build/utilities.sh
 RUN /pd_build/python.sh
 
 RUN apt-get -y install \
+    build-essential \
     python-setuptools \
     libpq-dev \
-    python-dev \
+    python3-dev \
     python3-pip
 
 RUN git clone --branch dev https://github.com/nielshojen/macnamer.git $APP_DIR
-RUN pip install -r $APP_DIR/setup/requirements.txt
+RUN pip3 install -r $APP_DIR/setup/requirements.txt
 RUN mkdir -p /etc/my_init.d
 ADD nginx/nginx-env.conf /etc/nginx/main.d/
 ADD nginx/macnamer.conf /etc/nginx/sites-enabled/macnamer.conf

@@ -6,6 +6,8 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__fil
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+ALLOWED_HOSTS = ['*']
+
 ADMINS = (
 )
 
@@ -116,10 +118,31 @@ SECRET_KEY = '6%y8=x5(#ufxd*+d+-ohwy0b$5z^cla@7tvl@n55_h_cex0qat'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -153,8 +176,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'namer',
-    'south',
-    'bootstrap_toolkit',
+    #'south',
+    'bootstrap5',
 )
 
 # A sample logging configuration. The only tangible logging
